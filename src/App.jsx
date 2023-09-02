@@ -1,19 +1,18 @@
-// import { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
-import Header  from './components/header'
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import NavBar from "./components/landingPage/navbar";
+import Hero from "./components/landingPage/hero";
 
 function App() {
-
   return (
-    <BrowserRouter>
+    <div>
+      <NavBar />
+      <Hero />
       <Routes>
-        <Route path='/hello' element={<Header/>}/>
+        <Route path="/" element={""} />
       </Routes>
-    </BrowserRouter>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
