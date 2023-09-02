@@ -6,7 +6,51 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* 01 - typography */
+
+/* --FONT SIZES(px) */
+/* 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 */
+
+/* font weight  */
+/* 400 / 500 / 600 / 700 / 800 */
+
+/*  -02 COLORS */
+
+/* Primary: #FCA311 
+
+Tints: #F18701
+
+Shades: #C97001
+
+Accents: #14213d
+
+Greys: #1B1B1B(hero section text), dark gray #414141(navbar links), #808080(each feature text e.g wardrobe), 
+
+*/
+
+/* Images 
+-- see assets folder grouping.
+*/
+
+/* icons 
+-- see also icons folder under assets.
+
+*/
+
+/* shadows
+
+*/
+
+/* SHADOWs 
+#A5A5A5 (drop shadow benefits boxes)
+
+*/
+
+/* WHITESPACE
+/* spacing system (px) */
+/* 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
+
+*/ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
