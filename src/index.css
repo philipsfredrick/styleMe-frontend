@@ -50,7 +50,11 @@ Greys: #1B1B1B(hero section text), dark gray #414141(navbar links), #808080(each
 /* spacing system (px) */
 /* 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
 
-*/ * {
+html {
+  font-size: 62.5%;
+}
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
