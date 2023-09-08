@@ -2,12 +2,13 @@ import "../styles/signup.css";
 import React, { useState, useEffect } from "react";
 import googleIcon from "../../assets/icon-google.png";
 
+
 function SignUpForm() {
   const [currentImage, setCurrentImage] = useState(0);
   const images = [
-    "../../assets/selfie.png",
-    "../../assets/young-man.png",
-    "../../assets/Man-fashion-boutique.png",
+    "../../src/assets/selfie.png",
+    "../../src/assets/young-man.png",
+    "../../src/assets/Man-fashion-boutique.png",
   ];
 
   const [loading, setLoading] = useState(false);
@@ -138,7 +139,6 @@ function SignUpForm() {
           <img
             src={images[currentImage]}
             alt="Changing Image"
-            className="w-full h-full object-cover"
           />
         </div>
         <div className="SMLogo"></div>
