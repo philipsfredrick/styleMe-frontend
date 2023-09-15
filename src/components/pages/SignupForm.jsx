@@ -1,9 +1,17 @@
 import "../styles/signup.css";
 import React, { useState, useEffect } from "react";
-import googleIcon from "../../assets/icon-google.png";
+import { GoogleLogin } from "@react-oauth/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import jwtDecode from "jwt-decode";
+import axios from "axios";
+import config from "../../../config";
 
 
 function SignUpForm() {
+  const signupUrl = config.REACT_APP_SIGNUP_URL;
+  const googleSignupUrl = config.REACT_APP_GOOGLE_SIGNUP_URL;
+  const googleApiToken = config.REACT_APP_GOOGLE_API_TOKEN;
+
   const [currentImage, setCurrentImage] = useState(0);
   const images = [
     "../../src/assets/selfie.png",
@@ -98,48 +106,62 @@ function SignUpForm() {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      const jsonData = JSON.stringify(formData);
+  const handleSubmit = () => {
+    const isValid = validateForm();
 
-      fetch("your_backend_api_endpoint", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: jsonData,
-      })
+    if (isValid) {
+      const userData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+      };
+
+      axios
+        .post(signupUrl, userData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
         .then((response) => {
-          if (response.ok) {
-            console.log("Form data sent successfully:", formData);
-          } else {
-            console.error("Error sending form data:", response.statusText);
-          }
+          console.log("Data sent successfully:", response.data);
         })
         .catch((error) => {
-          console.error("Error:", error);
+          console.error("Error sending data:", error);
         });
     } else {
-      console.log("Form data is not valid");
+      console.error("Form validation failed");
     }
   };
 
-  const googleSignUpClick = () => {
-    setLoading(true);
+  const handleGoogleLogin = (credentialResponse) => {
+    const details = jwtDecode(credentialResponse.credential);
 
-    
-    console.log("Google SignUp")
+    const userInfo = {
+      firstName: details.given_name,
+      lastName: details.family_name,
+      email: details.email,
+    };
+
+    axios
+      .post(googleSignupUrl, userInfo, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log("Data sent successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error);
+      });
   };
 
   return (
     <div>
       <div>
         <div className="img">
-          <img
-            src={images[currentImage]}
-            alt="Changing Image"
-          />
+          <img src={images[currentImage]} alt="Changing Image" />
         </div>
         <div className="SMLogo"></div>
       </div>
@@ -266,29 +288,15 @@ function SignUpForm() {
             <button className="ButtonHead" onClick={handleSubmit}>
               <span class="Button">Sign Up</span>
             </button>
-
-            <button
-              className="Frame35"
-              onClick={googleSignUpClick}
-              disabled={loading}
-              style={{
-                border: "1px solid var(--secondary-tint-05, #F39B2B)",
-                borderRadius: "24px",
-                background: "#FFF",
-              }}
-            >
-              <span className="OfficialButtonsSignInWithGoogle">
-                {loading ? (
-                  "Signing in..."
-                ) : (
-                  <>
-                    <img className="Logo" src={googleIcon} alt="Google Icon" />
-                    Sign up with Google
-                  </>
-                )}
-              </span>
-            </button>
-
+            <GoogleOAuthProvider clientId={googleApiToken}>
+              <GoogleLogin
+                className="OfficialButtonsSignInWithGoogle"
+                onSuccess={handleGoogleLogin}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+              />
+            </GoogleOAuthProvider>
             <div className="signinText">
               <span
                 style={{
