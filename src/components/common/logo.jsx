@@ -6,7 +6,7 @@ const Logo = () => {
     <div>
       <Link to="/">
         <img
-          className="h-24 w-24 cursor-pointer"
+          className="h-40 w-36 cursor-pointer"
           src="src\assets\styleme-logo.png"
           alt="Site Logo"
         />
