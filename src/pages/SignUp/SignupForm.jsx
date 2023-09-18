@@ -1,4 +1,4 @@
-import "../styles/signup.css";
+import "./signup.css";
 import React, { useState, useEffect } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
