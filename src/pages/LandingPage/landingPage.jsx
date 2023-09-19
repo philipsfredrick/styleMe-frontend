@@ -7,10 +7,12 @@ import Testimonials from "../../components/landingPage/testimonials";
 import FAQCTA from "../../components/landingPage/faq-cta";
 import Subscription from "../../components/landingPage/subscription";
 import Footer from "../../components/landingPage/footer";
+import NavBar from "../../components/landingPage/navbar";
 
 const LandingPage = () => {
   return (
     <div>
+      <NavBar />
       <Hero />
       <Trusted />
       <Features />

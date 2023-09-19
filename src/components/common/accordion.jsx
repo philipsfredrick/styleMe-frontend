@@ -14,7 +14,7 @@ const Accordion = ({ question, answer }) => {
   return (
     <>
       {/* question section */}
-      <div className="flex flex-col items-start justify-start gap-[1.6rem] border-yellow-400">
+      <div className="flex flex-col items-start justify-start gap-[1.6rem]">
         <div className="flex justify-between items-center gap-28 cursor-pointer">
           <h2 className="text-[#08123B] font-['Manrope'] text-base not-italic font-extrabold leading-6">
             {question}
