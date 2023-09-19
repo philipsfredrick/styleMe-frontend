@@ -120,6 +120,7 @@
   border-radius: 8px;
   background: var(--nautral-color-04, #E1E6EF);
   outline: none;
+  font-size: 16px;
 }
 
 .InputFieldContainer::placeholder{
@@ -133,6 +134,11 @@
 
 .InputFieldContainer:focus {
   border: none; 
+}
+
+.error {
+  color: red;
+  font-size: 12px;
 }
 
 

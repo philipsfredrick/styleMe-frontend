@@ -19,7 +19,7 @@ function SignUpForm() {
     "../../src/assets/Man-fashion-boutique.png",
   ];
 
-  const [loading, setLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -151,6 +151,8 @@ function SignUpForm() {
       })
       .then((response) => {
         console.log("Data sent successfully:", response.data);
+        setUserInfo(null);
+
       })
       .catch((error) => {
         console.error("Error sending data:", error);
