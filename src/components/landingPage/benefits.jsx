@@ -45,10 +45,11 @@ const Benefits = () => {
             </h4>
             <p
               className="items-stretch text-[#3D3D3D] font-['Manrope'] text-[0.6rem]
-            not-italic font-medium leading-4"
+            not-italic font-medium leading-3"
             >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earn
-              while you style yourself.
+              For a cost-effective fashion budget without compromising on
+              quality and style. Here is to smarter shopping, exclusive deals,
+              and fashion-wise financial wisdom.
             </p>
           </div>
         </div>
@@ -75,10 +76,11 @@ const Benefits = () => {
             </h4>
             <p
               className="items-stretch text-[#3D3D3D] font-['Manrope'] text-[0.6rem]
-            not-italic font-medium leading-4"
+            not-italic font-medium leading-3"
             >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earn
-              while you style yourself.
+              Our wardrobe management tools organizes your clothing, finds the
+              perfect outfit for any occasion, and streamlines your daily
+              dressing routine.
             </p>
           </div>
         </div>
@@ -99,16 +101,17 @@ const Benefits = () => {
           <div>
             <h4
               className="items-stretch text-[#1E1E1E] font-['Manrope'] 
-            text-base not-italic font-extrabold leading-7"
+            text-base not-italic font-extrabold leading-6"
             >
               Wardrobe access
             </h4>
             <p
               className="items-stretch text-[#3D3D3D] font-['Manrope'] text-[0.6rem]
-            not-italic font-medium leading-4"
+            not-italic font-medium leading-3"
             >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earn
-              while you style yourself.
+              Your VIP pass to a world of style and convenience. We've
+              reimagined fashion for the digital age, giving you unparalleled
+              access to your closet like never before.
             </p>
           </div>
         </div>
@@ -135,10 +138,12 @@ const Benefits = () => {
             </h4>
             <p
               className="items-stretch text-[#3D3D3D] font-['Manrope'] text-[0.6rem]
-            not-italic font-medium leading-4"
+            not-italic font-medium leading-3"
             >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earn
-              while you style yourself.
+              Our app's user-friendly design ensures that you can navigate
+              effortlessly, whether you're a fashion novice or a seasoned
+              trendsetter. Discover a seamless and intuitive experience that's
+              as stylish as it is accessible.
             </p>
           </div>
         </div>

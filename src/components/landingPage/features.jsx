@@ -50,10 +50,8 @@ const Features = () => {
                 Men, Women and kids
               </h2>
               <p className="mx-auto w-auto overflow-auto text-xs leading-5 text-[#808080]  font-['Manrope'] not-italic font-medium md:w-[22.5rem] md:text-base  md:leading-9">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Sapiente quidem, ipsam omnis maxime expedita neque ipsa quam
-                voluptatibus sit at deleniti, iure eum, nesciunt explicabo nobis
-                fuga facere assumenda obcaecati!
+                We got the best that you can wear. Clothes that make you feel
+                sophisticated irrespective of your gender.
               </p>
               <a
                 className="flex items-start gap-2 mb-6 text-[#1B1B1BCC] text-xl not-italic 
@@ -91,10 +89,11 @@ const Features = () => {
                 Wardrobe
               </h2>
               <p className="mx-auto w-auto overflow-auto text-xs leading-5 md:w-[22.5rem] text-[#808080] md:text-base font-['Manrope'] not-italic font-medium md:leading-9">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Sapiente quidem, ipsam omnis maxime expedita neque ipsa quam
-                voluptatibus sit at deleniti, iure eum, nesciunt explicabo nobis
-                fuga facere assumenda obcaecati!
+                Your fashion journey is about to get a whole lot easier and more
+                exciting with our brand new Wardrobe Feature. Imagine having
+                your entire wardrobe at your fingertips, neatly organized and
+                accessible anytime, anywhere. Welcome to the future of fashion,
+                right in the palm of your hand.
               </p>
               <a
                 className="flex items-start gap-2 text-[#1B1B1BCC] text-xl not-italic 
@@ -126,10 +125,13 @@ const Features = () => {
                 Communities
               </h2>
               <p className="mx-auto w-auto overflow-auto text-xs leading-5 md:w-[22.5rem] text-[#808080] md:text-base font-['Manrope'] not-italic font-medium md:leading-9">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Sapiente quidem, ipsam omnis maxime expedita neque ipsa quam
-                voluptatibus sit at deleniti, iure eum, nesciunt explicabo nobis
-                fuga facere assumenda obcaecati!
+                Join the Style Revolution in our Fashion Community. Fashion
+                transcends mere clothing; it's a declaration, an embodiment, and
+                a lifestyle. Here, like-minded style aficionados unite to
+                embrace individuality, uncover the latest trends, and ignite
+                mutual inspiration.Forge connections within a global community
+                of fashion devotees. Share your distinct style, explore emerging
+                trends, and form bonds.
               </p>
               <a
                 className="flex items-start gap-2 text-[#1B1B1BCC] text-xl not-italic 

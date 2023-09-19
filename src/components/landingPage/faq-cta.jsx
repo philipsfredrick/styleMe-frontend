@@ -1,71 +1,14 @@
-import React, { useState } from "react";
-import { BiPlusCircle } from "react-icons/bi";
-import { BiMinusCircle } from "react-icons/bi";
+import React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 import CtaCentre from "../../assets/img/cta-images/cta-centre.png";
 import CtaRight from "../../assets/img/cta-images/cta-right.png";
 import CtaLeft from "../../assets/img/cta-images/cta-left.png";
-
-const data = [
-  {
-    id: 1,
-    question: "How does one know when to start",
-    answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo culpa ut sequi, in nostrum, deserunt assumenda accusamus voluptatum, maiores quae beatae eveniet magni veritatis ducimus quod deleniti autem exercitationem eligendi!",
-  },
-  {
-    id: 2,
-    question: "What is StyleMe",
-    answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo culpa ut sequi, in nostrum, deserunt assumenda accusamus voluptatum, maiores quae beatae eveniet magni veritatis ducimus quod deleniti autem exercitationem eligendi!",
-  },
-  {
-    id: 3,
-    question: "Can StyleMe help me with my fashion sense?",
-    answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo culpa ut sequi, in nostrum, deserunt assumenda accusamus voluptatum, maiores quae beatae eveniet magni veritatis ducimus quod deleniti autem exercitationem eligendi!",
-  },
-  {
-    id: 4,
-    question: "How do i register on StyleMe?",
-    answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo culpa ut sequi, in nostrum",
-  },
-  {
-    id: 5,
-    question: "Can i have my personal wardrobe on StyleMe?",
-    answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo culpa ut sequi, in nostrum, deserunt assumenda accusamus voluptatum, maiores quae beatae eveniet magni veritatis ducimus quod deleniti autem exercitationem eligendi!",
-  },
-];
+import { accordions } from "./data";
+import Accordion from "../common/accordion";
 
 const FAQCTA = () => {
-  // const [show, setShow] = useState({
-  //   1: false,
-  //   2: false,
-  //   3: false,
-  // });
-
-  const [plus, setPlus] = useState(true);
-  const [show, setShow] = useState(false);
-
-  const handleClick = () => {
-    setPlus(!plus);
-    setShow(!show);
-  };
-
-  // const handleClick = (id) => {
-  //   setShow((prevState) => ({
-  //     ...prevState,
-  //     [id]: !prevState[id],
-  //   }));
-  // };
-
   return (
-    <div
-      className="max-auto w-full bg-[#E1E6EF] px-8 sm:px-6  md:px-8 lg:px-12
-  scroll-m-20 sm:scroll-m-24 xl:scroll-m-32"
-    >
+    <div className="mt-20 bg-[#E1E6EF] px-8 lg:px-12">
       <div className="mx-auto flex flex-col items-center gap-3 pt-10">
         <h2 className="text-[#08123B] font-['Manrope'] text-2xl not-italic font-extrabold leading-8">
           Frequently asked questions
@@ -74,42 +17,22 @@ const FAQCTA = () => {
           Everything you need to know about StyleMe
         </p>
       </div>
+
       {/* FAQ sections */}
-
-      <div className="flex flex-col mt-16 border  border-green-600 overflow-y-auto box-border">
-        {data.map((item) => (
-          <div
-            key={item.id}
-            className="flex items-start justify-between border-b-2 px-10 py-10 md:mx-[15rem]"
-          >
-            <span className="text-[#08123B] font-['Manrope'] text-sm not-italic font-extrabold leading-8">
-              {item.question}
-            </span>
-
-            <span onClick={() => handleClick(item.id)}>
-              {plus ? (
-                <BiPlusCircle
-                  size={20}
-                  className="flex items-center justify-end"
-                />
-              ) : (
-                <BiMinusCircle
-                  size={20}
-                  className="flex items-center justify-end"
-                />
-              )}
-            </span>
-            {show && (
-              <p
-                key={item.id}
-                className="text-sm text-[#414141] font-['Manrope'] py-2
-          not-italic font-medium leading-5 mb-[2.4rem]"
-              >
-                {item.answer}
-              </p>
-            )}
-          </div>
-        ))}
+      {/* main content here */}
+      <div className="flex flex-col mt-16 gap-4">
+        {accordions.map((item, id) => {
+          // destruct
+          const { question, answer } = item;
+          return (
+            <div
+              key={id}
+              className="flex rounded-md py-10 md:mx-[15rem] border-4 border-b-white"
+            >
+              <Accordion question={question} answer={answer} />
+            </div>
+          );
+        })}
       </div>
 
       {/* Call To Action section */}
