@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# It contains the application configuration -> 1) REACT_APP_GOOGLE_API_TOKEN 2) REACT_APP_SIGNUP_URL 3) REACT_APP_GOOGLE_SIGNUP_URL
+config.jsx 
+
+
