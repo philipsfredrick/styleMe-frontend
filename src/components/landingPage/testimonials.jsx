@@ -5,7 +5,7 @@ import Gallery2 from "../../assets/img/gallery-images/gallery2.png";
 import Gallery3 from "../../assets/img/gallery-images/gallery3.png";
 import Gallery4 from "../../assets/img/gallery-images/gallery4.png";
 import Gallery5 from "../../assets/img/gallery-images/gallery5.png";
-import Carousel from "../common/carousel";
+import Carousel from "./carousel";
 import { testimonials } from "./data";
 
 const Testimonials = () => {
