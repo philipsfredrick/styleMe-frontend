@@ -1,19 +1,31 @@
-import React from 'react';
+import { FcGoogle } from "react-icons/fc";
 import "../loginPage/login.css";
+// import frame_one from "../loginPage/images/frame_one.png";
+import frame_one from "../loginPage/images/frame_one.svg";
+import frame_two from "../loginPage/images/frame_two.svg";
+import frame_three from "../loginPage/images/frame_three.svg";
+import Carousel from "../loginPage/Carousel.jsx";
 
 const Login = () => {
+
+  const images = [frame_one, frame_two, frame_three]
+  const tags = ["Personal wardrobe", "Showcase your style", "Trending outfits"]
+
   return (
     <div className="loginpage-container">
-        <div>
+        {/* <div>
           <h1>navbar</h1>
-        </div>
+        </div> */}
         <div className="loginbody-container">
           <div className="loginright-container">
             <div className="loginright-welcome">
               <h1>Welcome Back!</h1>
             </div>
             <div className="loginoptions-container">
-              <button>Continue with google</button>
+              <button >
+                <FcGoogle size={20}/>
+                Continue with google
+              </button>
               <div className="loginoptions-or">
                   <p className="loginoptions-hr-text"><span>OR</span></p>
               </div>
@@ -37,9 +49,9 @@ const Login = () => {
               </div>
             </div>
           </div>
-            <div>
-                <h2>Left side</h2>
-            </div>
+          <div className="loginleft-container">
+              <Carousel images={images} tags={tags} m/>
+          </div>
         </div>
     </div>
   );

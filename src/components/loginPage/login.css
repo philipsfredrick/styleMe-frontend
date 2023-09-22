@@ -4,7 +4,8 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background: #FFFFFF;
+    /* background: #FFFFFF; */
+    background: white;
     font-size: 18px;
     font-family: manrope;
     font-size: 16px;
@@ -18,7 +19,10 @@ html {
     margin: 0;
     padding: 0;
     width: 100%;
+    height: auto;
     border-style: dashed;
+    overflow: hidden;
+    
 }
 .loginbody-container {
     display: flex;
@@ -26,13 +30,11 @@ html {
 
 .loginright-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: unset;
     flex-direction: column;
     gap: 5rem;
     width: 50%;
-    border-style: dashed;
     align-items: center;
-    
 }
 
 .loginright-welcome {
@@ -41,9 +43,7 @@ html {
     font-weight: 1000;
     letter-spacing: 0.1rem;
     color: black;
-    margin-top: 5rem;
-
-    
+    margin-top: 3rem;
 }
 
 .loginoptions-container {
@@ -51,10 +51,9 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5rem;
+    gap: 2rem;
     width: 70%;
     padding: 2rem;
-    /* border: 1px solid black; */
 }
 
 .loginoptions-container button {
@@ -65,14 +64,17 @@ html {
     color: #FBBC05;
     font-weight: 700;
     line-height: 24px;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 }
 
 .loginoptions-or {
     display: grid;
     flex-direction: row;
     align-items: center;
-    width: 100%;
+    width: 90%;
     border: #000;
 }
 
@@ -94,9 +96,11 @@ html {
 
 .loginform-container {
     display:grid;
+    width: 100%;
     gap: 1em;
     justify-content: center;
-    box-shadow: 0px 6px 10px 0px rgba(0 0 0 / 16%);
+    border-radius: 10px;
+    box-shadow: 0px 2px 0px .5px rgba(0 0 0 / 5%);
 }
 
 .loginform-text {
@@ -177,14 +181,76 @@ html {
     font-style: normal;
     font-weight: 600;
     line-height: 24px;
-    padding: 0 1.5em;
+    padding: 0 1em;
 }
 
 .loginleft-container {
     width: 50%;
-    justify-content: center;
-    border-style: dashed;
+    height: fit-content;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    /* border: 10px solid red; */
 }
 
+.carousel-picture {
+    width: 100%;
+    max-height: 100%;
+    margin: 0px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+}
 
+.carousel-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 31em;
+    right: 10%;
+    gap: 4.5em;
+    color: white;
+}
+
+.carousel-label {
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    color: white;
+}
+
+.carousel-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    height: 20px;
+    background-color: transparent;
+}
+
+.carousel-buttons button {
+    background-color: white;
+    height: 1.5vh;
+    width: 1.5vw;
+    border-radius: 1em;
+}
+
+.carousel-buttons .inactive {
+    background-color: white;
+    height: 1.5vh;
+    width: 1.5vw;
+    border-radius: 1em;
+}
+
+.carousel-buttons .active {
+    background-color: grey;
+    height: 1.5vh;
+    width: 4vw;
+    border-radius: 1em;
+}
 

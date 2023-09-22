@@ -70,6 +70,8 @@ body {
 
   overflow-x: hidden;
   min-height: 100vh;
+
+  box-sizing: border-box;
 }
 
 /* MAIN BACKGROUND */
