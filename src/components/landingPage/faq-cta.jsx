@@ -4,7 +4,7 @@ import CtaCentre from "../../assets/img/cta-images/cta-centre.png";
 import CtaRight from "../../assets/img/cta-images/cta-right.png";
 import CtaLeft from "../../assets/img/cta-images/cta-left.png";
 import { accordions } from "./data";
-import Accordion from "../common/accordion";
+import Accordion from "./accordion";
 
 const FAQCTA = () => {
   return (
@@ -22,7 +22,6 @@ const FAQCTA = () => {
       {/* main content here */}
       <div className="flex flex-col mt-16 gap-4">
         {accordions.map((item, id) => {
-          // destruct
           const { question, answer } = item;
           return (
             <div

@@ -1,11 +1,12 @@
 import React from "react";
-import LeadImage from "../../assets/img/testimonial/odinaka.jpg";
 import Stars from "../../assets/img/testimonial/stargroup.png";
 import Gallery1 from "../../assets/img/gallery-images/gallery1.png";
 import Gallery2 from "../../assets/img/gallery-images/gallery2.png";
 import Gallery3 from "../../assets/img/gallery-images/gallery3.png";
 import Gallery4 from "../../assets/img/gallery-images/gallery4.png";
 import Gallery5 from "../../assets/img/gallery-images/gallery5.png";
+import Carousel from "../common/carousel";
+import { testimonials } from "./data";
 
 const Testimonials = () => {
   return (
@@ -15,7 +16,7 @@ const Testimonials = () => {
         {/* First div */}
         <div className="flex flex-col items-start justify-center w-1/2">
           <img src={Stars} alt="Group of stars" />
-          <div className="inline-flex flex-col items-start justify-center gap-3">
+          <div className="inline-flex flex-col items-start justify-center gap-8">
             <h2
               className="text-[#414141] font-['Manrope'] text-2xl not-italic
             font-extrabold leading-9"
@@ -23,32 +24,16 @@ const Testimonials = () => {
               Our Testimony
             </h2>
 
-            <figure className="flex flex-col items-center justify-center">
-              <blockquote
-                className="mx-auto text-[#808080] font-['Manrope'] pb-28
-        text-xs not-italic font-medium leading-4 md:text-base  md:leading-6 "
-              >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Pariatur, aliquid sint vitae beatae quisquam molestias, quia
-                consectetur nulla cumque nemo expedita consequuntur impedit
-                similique culpa reiciendis eius? Distinctio, suscipit ea.
-              </blockquote>
-              {/* <div className="flex flex-col items-end justify-center">
-                <img
-                  className="w-[5.6rem] h-[5.6rem] flex-shrink-0 rounded-full"
-                  src={LeadImage}
-                  alt="Team Lead Picture"
-                />
-              </div> */}
-              {/* <figcaption className="flex items-center flex-col justify-center">
-                <p className="text-[#000] font-['Manrope'] text-base not-italic font-extrabold leading-8">
-                  Team Lead
-                </p>
-                <p className="text-[#000] font-['Manrope'] text-xs not-italic font-medium leading-4">
-                  Obeleagu Odinaka
-                </p>
-              </figcaption> */}
-            </figure>
+            <div className="flex flex-col items-center justify-center">
+              {testimonials.map((item, id) => {
+                const { quote, name, role } = item;
+                return (
+                  <div key={id}>
+                    <Carousel quote={quote} name={name} role={role} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
         {/* Second div */}

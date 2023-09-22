@@ -32,3 +32,18 @@ export const accordions = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo culpa ut sequi, in nostrum, deserunt assumenda accusamus voluptatum, maiores quae beatae eveniet magni veritatis ducimus quod deleniti autem exercitationem eligendi!",
   },
 ];
+
+export const testimonials = [
+  {
+    id: 1,
+    quote: "Before StyleMe, I struggled to put together stylish outfits. Now, it's a breeze. I've never felt more confident in my daily attire.",
+    name: "Rose A",
+    role: "Software Engineer"
+  },
+  {
+    id: 2,
+    quote: "As a busy professional, I needed a quick solution for fashion dilemmas. StyleMe has been my style savior. I can't imagine life without it.",
+    name: "Jessica O",
+    role: "Software Engineer"
+  }
+  ];
