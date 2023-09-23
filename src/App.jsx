@@ -1,17 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/landingPage/navbar";
-import Hero from "./components/landingPage/hero";
-import SignupForm from "./pages/SignUp/SignupForm"
+import LandingPage from "./pages/LandingPage/landingPage";
+import SignupForm from "./pages/SignUp/SignupForm";
 
 function App() {
   return (
     <div>
-      
-      <Hero />
       <Routes>
-      <Route path="/signup" element={<SignupForm />} />
-        <Route path="/" element={<NavBar />} />
+        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </div>
   );
