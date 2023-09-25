@@ -1,11 +1,9 @@
 import "./signup.css";
 import React, { useState, useEffect } from "react";
-import { GoogleLogin } from "@react-oauth/google";
+import MyCustomButton from "./MyCustomButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import jwtDecode from "jwt-decode";
 import axios from "axios";
 import config from "../../../config";
-
 
 function SignUpForm() {
   const signupUrl = config.REACT_APP_SIGNUP_URL;
@@ -18,8 +16,6 @@ function SignUpForm() {
     "../../src/assets/young-man.png",
     "../../src/assets/Man-fashion-boutique.png",
   ];
-
-  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -135,28 +131,22 @@ function SignUpForm() {
   };
 
   const handleGoogleLogin = (credentialResponse) => {
-    const details = jwtDecode(credentialResponse.credential);
+    const accessToken = credentialResponse.access_token;
 
-    const userInfo = {
-      firstName: details.given_name,
-      lastName: details.family_name,
-      email: details.email,
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
     };
 
-    axios
-      .post(googleSignupUrl, userInfo, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        console.log("Data sent successfully:", response.data);
-        setUserInfo(null);
-
-      })
-      .catch((error) => {
-        console.error("Error sending data:", error);
-      });
+    fetch(googleSignupUrl, requestOptions)
+      .then((response) => response.json())
+      .then((data) => console.log("Response from backend:", data))
+      .catch((error) =>
+        console.error("Error sending token to backend:", error)
+      );
   };
 
   return (
@@ -291,13 +281,9 @@ function SignUpForm() {
               <span class="Button">Sign Up</span>
             </button>
             <GoogleOAuthProvider clientId={googleApiToken}>
-              <GoogleLogin
-                className="OfficialButtonsSignInWithGoogle"
-                onSuccess={handleGoogleLogin}
-                onError={() => {
-                  console.log("Login Failed");
-                }}
-              />
+              <MyCustomButton onClick={handleGoogleLogin}>
+                Sign in with Google
+              </MyCustomButton>
             </GoogleOAuthProvider>
             <div className="signinText">
               <span

@@ -11,6 +11,12 @@
   flex-direction: column;
 }
 
+@media (max-width: 300px) {
+  .img {
+    display: none;
+  }
+}
+
 .SMLogo{
   width: 91.011px;
   height: 90px;
@@ -46,17 +52,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 1em;
+  padding: 4px;
 }
 
 .LetsGetStarted{
   color: #FCA311;
 
   font-family: Manrope;
-  font-size: 57px;
+  font-size: 2.5em;
   font-style: normal;
   font-weight: 700;
-  line-height: 72px;
+  line-height: 1em;
 }
 
 .CreateYourStylemeAccount{
@@ -64,22 +71,21 @@
   font-family: Manrope;
   font-size: 17px;
   font-style: normal;
-  font-weight: 700;
-  line-height: 24px;
+  font-weight: 600;
+  line-height: 1em;
 }
 
 .Frame36561{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  
+  gap: 1em;  
 }
 
 .Frame36557{
   display: flex;
-  width: 385px;
-  height: 490px;
+  width: 100%;
+  height: auto;
   padding: 10px;
   justify-content: center;
   align-items: center;
@@ -94,7 +100,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
 }
 
 .InputField{
