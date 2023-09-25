@@ -6,7 +6,6 @@ import jwtDecode from "jwt-decode";
 import axios from "axios";
 import config from "../../../config";
 
-
 function SignUpForm() {
   const signupUrl = config.REACT_APP_SIGNUP_URL;
   const googleSignupUrl = config.REACT_APP_GOOGLE_SIGNUP_URL;
@@ -152,7 +151,6 @@ function SignUpForm() {
       .then((response) => {
         console.log("Data sent successfully:", response.data);
         setUserInfo(null);
-
       })
       .catch((error) => {
         console.error("Error sending data:", error);
