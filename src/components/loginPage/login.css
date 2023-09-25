@@ -32,7 +32,7 @@ html {
     display: flex;
     justify-content: unset;
     flex-direction: column;
-    gap: 5rem;
+    gap: 2rem;
     width: 50%;
     align-items: center;
 }
@@ -43,7 +43,7 @@ html {
     font-weight: 1000;
     letter-spacing: 0.1rem;
     color: black;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .loginoptions-container {
@@ -186,7 +186,7 @@ html {
 
 .loginleft-container {
     width: 50%;
-    height: fit-content;
+    height: auto;
     align-items: center;
     margin: 0;
     padding: 0;
@@ -195,7 +195,7 @@ html {
 
 .carousel-picture {
     width: 100%;
-    max-height: 100%;
+    height: auto;
     margin: 0px;
     position: relative;
     display: inline-block;
@@ -209,7 +209,7 @@ html {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 31em;
+    top: 65%;
     right: 10%;
     gap: 4.5em;
     color: white;
