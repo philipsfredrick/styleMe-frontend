@@ -5,39 +5,58 @@ import Gallery2 from "../../assets/img/gallery-images/gallery2.png";
 import Gallery3 from "../../assets/img/gallery-images/gallery3.png";
 import Gallery4 from "../../assets/img/gallery-images/gallery4.png";
 import Gallery5 from "../../assets/img/gallery-images/gallery5.png";
-import Carousel from "./carousel";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { testimonials } from "./data";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Testimonials = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    fade: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    // nextArrow: <FaChevronRight />,
+    // prevArrow: <FaChevronLeft />,
+  };
+
   return (
-    <div className="mx-auto w-full overflow-hidden pt-14 px-8 flex-shrink-0 bg-[#FFF8EB] lg:px-12">
+    <div className="mx-auto overflow-hidden pt-14 px-8 flex-shrink-0 bg-[#FFF8EB] lg:px-12 border border-green-600">
       {/* Flex layout with 2 divs */}
-      <div className="flex items-center gap-8 sm:flex sm:flex-row md:flex md:flex-row lg:flex lg:flex-row">
+      <div className="flex items-center w-full gap-8 border border-orange-500">
         {/* First div */}
-        <div className="flex flex-col items-start justify-center w-1/2">
-          <img src={Stars} alt="Group of stars" />
-          <div className="inline-flex flex-col items-start justify-center gap-8">
+        <div className="flex flex-col  w-1/2 gap-2 border border-blue-600">
+          <div className="inline-flex flex-col items-start justify-center gap-2 border border-orange-500">
+            <img src={Stars} alt="Group of stars" />
             <h2
               className="text-[#414141] font-['Manrope'] text-2xl not-italic
             font-extrabold leading-9"
             >
               Our Testimony
             </h2>
+          </div>
 
-            <div className="flex flex-col items-center justify-center">
-              {testimonials.map((item, id) => {
-                const { quote, name, role } = item;
-                return (
-                  <div key={id}>
-                    <Carousel quote={quote} name={name} role={role} />
-                  </div>
-                );
-              })}
-            </div>
+          <div className="flex flex-col items-start">
+            <Slider {...settings}>
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="px-4 py-8 text-center">
+                  <p className="text-lg font-semibold">{testimonial.quote}</p>
+                  <p className="text-gray-600 mt-2">
+                    - {testimonial.author}, {testimonial.role}
+                  </p>
+                </div>
+              ))}
+            </Slider>
           </div>
         </div>
+
         {/* Second div */}
-        <div className="flex flex-col  w-1/2 gap-2 sm:w-1/2 md:w-1/2 lg:w-1/2">
+        <div className="flex flex-col  w-1/2 gap-2 border border-yellow-700">
           <div className="flex flex-col items-center justify-center gap-4 md:flex md:flex-row md:items-end md:justify-center">
             <img
               className="w-28 h-24 md:w-32 md:h-24"
