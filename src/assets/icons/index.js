@@ -11,6 +11,11 @@ import wardrobeWhite from "../icons/wardrobe-icon.svg";
 import marketIcon from "../icons/market-icon.svg";
 import marketWhite from "../icons/market-white.svg";
 import plusIcon from "../icons/plus-icon.svg";
+import Downwardarrow from "../icons/downwardarrow.svg";
+import Nativewear from "../icons/nativewear.svg";
+import Partywear from "../icons/partywear.svg";
+import Sundaywear from "../icons/sundaywear.svg";
+import Workwear from "../icons/workwear.svg";
 
 export {
 	Logo,
@@ -26,4 +31,10 @@ export {
 	marketIcon,
 	marketWhite,
 	plusIcon,
+	Downwardarrow,
+	Nativewear,
+	Partywear,
+	Sundaywear,
+	Workwear
+
 };

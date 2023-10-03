@@ -4,7 +4,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-import config from "../../../config";
+// import config from "../../../config";
 
 function SignUpForm() {
   const signupUrl = config.REACT_APP_SIGNUP_URL;
