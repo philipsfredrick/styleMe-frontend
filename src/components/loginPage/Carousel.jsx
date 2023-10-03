@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "../loginPage/login.css"
+import { useNavigate } from "react-router";
+import axios from "axios";
 
 
 const Carousel = ({images, tags}) => {
+
+    let navigate = useNavigate();
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState("left");
     const delay = 3500;
