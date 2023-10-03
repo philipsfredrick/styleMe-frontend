@@ -1,5 +1,5 @@
 import { FcGoogle } from "react-icons/fc";
-// import "../loginPage/login.css";
+import "../loginPage/login.css";
 import frame_one from "../loginPage/images/frame_one.svg";
 import frame_two from "../loginPage/images/frame_two.svg";
 import frame_three from "../loginPage/images/frame_three.svg";
