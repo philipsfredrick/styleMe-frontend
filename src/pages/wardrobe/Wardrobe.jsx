@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import {Link } from "react-router-dom";
+import config from "../../../config";
+
 import {
   Logo,
   searchIcon,
@@ -43,11 +45,38 @@ const Wardrobe = () => {
   const [images, setImages] = useState([]);
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
 
+  const handleTabClick = (tabName) => {
+
+    setTab("wardrobe"); 
+  
+    const url = `http://localhost:3000/wardrobe/${tabName}`;
+    
+    window.history.pushState({}, "", url);
+    
+  };
   const handleFileUpload = (event) => {
     const selectedImage = event.target.files;
     const selectedImageArray = Array.from(selectedImage);
+    const formData = new FormData();
 
     const imageArray = selectedImageArray.map((image) => {
+      const uploadEndpoint = config.REACT_APP_UPLOAD_URL;
+
+
+      formData.append("image", image);
+
+
+      fetch(uploadEndpoint, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Images uploaded successfully:", data);
+        })
+        .catch((error) => {
+          console.error("Error uploading images:", error);
+        });
       return URL.createObjectURL(image);
     });
 
@@ -66,9 +95,45 @@ const Wardrobe = () => {
   };
 
   const handleSell = (index) => {
-    
+    const imageToSell = images[index];
+
+    exportToMarketplace(imageToSell)
+    .then((uploadResponse) => {
+      const imageUrlInMarketplace = uploadResponse.imageUrl;
+
+      window.location.href = `/marketplace?url=${imageUrlInMarketplace}`;
+
+      const updatedImages = images.filter((_, i) => i !== index);
+      setImages(updatedImages);
+    })
+    .catch((error) => {
+      console.error('Error uploading image to the marketplace:', error);
+    });
+    const updatedImages = images.filter((_, i) => i !== index);
+    setTab("marketplace"); 
+
     setImages(updatedImages);
   };
+
+  const exportToMarketplace= async (image) => {
+    const uploadEndpoint = config.REACT_APP_MARKET_URL;
+ 
+    const formData = new FormData();
+    formData.append('image', image);
+  
+    return fetch(uploadEndpoint, {
+      method: 'POST',
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to upload image to the marketplace');
+        }
+        return response.json();
+      });
+  }
+
+  const handleGenerate = () => {};
 
   return (
     <div className="w-full h-full bg-[#F2F5FE]">
@@ -162,51 +227,63 @@ const Wardrobe = () => {
         {/* PAGE CONTENT */}
         {tab === "dashboard" && (
           <div className="flex flex-col">
-          <div className="text-zinc-900 text-opacity-90 text-2xl font-bold font-['Manrope'] leading-9">Categories</div>
-
-          <div className="flex flex-col w-[900px] gap-6 rounded-xl border border-solid justify-start items-center gap-6 inline-flex">
-            
-            <div className="flex gap-4">
-              <button
-                className="work flex flex-col items-center gap-1"
-                onClick={() => navigate("/work-closet")}
-              >
-                <img src={Workwear} alt="" className="pl-2" />
-                <div className="flex gap-1 font-bold">
-                  <p>Work Closet </p>
-                  <img src={Downwardarrow} alt="" />
-                </div>
-              </button>
-              <button className="sunday" onClick={() => navigate("/sunday-closet")}>
-                <img src={Sundaywear} alt="" />
-                <div className="flex gap-1 font-bold">
-                  <p>Sunday Closet</p>
-                  <img src={Downwardarrow} alt="" />
-                </div>
-              </button>
-              <button className="native" onClick={() => navigate("/native-closet")}>
-                <img src={Nativewear} alt="" />
-                <div className="flex gap-1 font-bold">
-                  <p>Native Closet</p>
-                  <img src={Downwardarrow} alt="" />
-                </div>
-              </button>
-              <button className="party" onClick={() => navigate("/party-closet")}>
-                <img src={Partywear} alt="" />
-                <div className="flex gap-1 font-bold">
-                  <p>Party Closet</p>
-                  <img src={Downwardarrow} alt="" />
-                </div>
-              </button>
+            <div className="text-zinc-900 text-opacity-90 text-2xl font-bold font-['Manrope'] leading-9">
+              Categories
             </div>
-          </div>
+
+            <div className="flex flex-col w-[900px] gap-6 rounded-xl border border-solid justify-start items-center gap-6 inline-flex">
+              <div className="flex gap-4">
+                <a
+                  onClick={() => handleTabClick("work")}
+                  className="work flex flex-col items-center gap-1"
+                >
+                  <img src={Workwear} alt="" className="pl-2" 
+                  name="work"
+                  />
+                  <div className="flex gap-1 font-bold">
+                    <p>Work Closet </p>
+                    <img src={Downwardarrow} alt="" />
+                  </div>
+                </a>
+
+                <a onClick={() => handleTabClick("sunday")} className="sunday">
+                  <img src={Sundaywear} alt="" 
+                  name="sunday"/>
+                  <div className="flex gap-1 font-bold">
+                    <p>Sunday Closet</p>
+                    <img src={Downwardarrow} alt="" />
+                  </div>
+                </a>
+
+                <a onClick={() => handleTabClick("native")} className="native">
+                  <img src={Nativewear} alt="" 
+                  name="native"/>
+                  <div className="flex gap-1 font-bold">
+                    <p>Native Closet</p>
+                    <img src={Downwardarrow} alt="" />
+                  </div>
+                </a>
+
+
+                <a onClick={() => handleTabClick("party")} className="party">
+                  <img src={Partywear} alt="" 
+                  name="party"/>
+                  <div className="flex gap-1 font-bold">
+                    <p>Party Closet</p>
+                    <img src={Downwardarrow} alt="" />
+                  </div>
+                </a>
+
+              </div>
+            </div>
           </div>
         )}
 
         {tab === "wardrobe" && (
-          <div className="flex flex-col items-center justify-center gap-20 mt-12">
+          <div className="flex flex-col items-center justify-center min-h-screen">
+          <div className="flex flex-col items-center justify-center gap-20 mt-4">
             <div className="flex flex-col gap-10">
-              <label className="w-[171px] h-[52px] rounded-lg bg-white border border-[#14213D] outline-[#14213D]  cursor-pointer text-center text-lg font-semibold">
+              <label className="w-full md:w-[171px] h-[52px] rounded-lg bg-white border border-[#14213D] outline-[#14213D]  cursor-pointer text-center text-lg font-semibold">
                 Upload
                 <input
                   type="file"
@@ -258,13 +335,14 @@ const Wardrobe = () => {
                   ))}
               </div>
             </div>
-
-            <div className="flex flex-col gap-4">
-              <button className="w-[171px] h-[52px] rounded-lg bg-white border border-[#14213D] outline-[#14213D] cursor-pointer text-center text-lg font-semibold mt-auto">
+    
+            <div className="flex flex-col gap-4 mt-auto">
+              <button className="w-full md:w-[171px] h-[52px] rounded-lg bg-white border border-[#14213D] outline-[#14213D] cursor-pointer text-center text-lg font-semibold">
                 Generate
               </button>
             </div>
           </div>
+        </div>
         )}
         {tab === "marketplace" && (
           <div className="w-full gap-20 h-auto justify-between flex flex-col mt-12">
