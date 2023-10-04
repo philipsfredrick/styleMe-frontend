@@ -4,11 +4,9 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* background: #FFFFFF; */
-    background: white;
-    font-size: 18px;
+    background: #FFFFFF;
     font-family: manrope;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 html {
@@ -22,24 +20,25 @@ html {
     height: auto;
     border-style: dashed;
     overflow: hidden;
-    
-}
-.loginbody-container {
-    display: flex;
+    display: flex;   
 }
 
-.loginright-container {
+/* .loginbody-container {
+    display: flex;
+} */
+
+.loginleft-container {
     display: flex;
     justify-content: unset;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1em;
     width: 50%;
     align-items: center;
 }
 
-.loginright-welcome {
+.loginleft-welcome {
     align-items: center;
-    font-size: 5rem;
+    font-size: 3rem;
     font-weight: 1000;
     letter-spacing: 0.1rem;
     color: black;
@@ -51,7 +50,7 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     width: 70%;
     padding: 2rem;
 }
@@ -62,12 +61,14 @@ html {
     height: 8vh;
     border-radius: 5rem;
     color: #FBBC05;
+    outline: none;
+    font-size: 1rem;
     font-weight: 700;
     line-height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .loginoptions-or {
@@ -184,13 +185,12 @@ html {
     padding: 0 1em;
 }
 
-.loginleft-container {
+.logincarousel-container {
     width: 50%;
     height: auto;
     align-items: center;
     margin: 0;
     padding: 0;
-    /* border: 10px solid red; */
 }
 
 .carousel-picture {

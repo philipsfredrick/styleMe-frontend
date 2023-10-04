@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "../loginPage/login.css"
 import { useNavigate } from "react-router";
-import { axios } from "axios";
+import  axios from "axios";
 
 
 const Carousel = ({images, tags}) => {
