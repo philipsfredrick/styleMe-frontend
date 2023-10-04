@@ -11,12 +11,6 @@ const Footer = () => {
           <h2 className="text-[#FEFEFE] text-center font-['Outfit'] text-3xl not-italic font-bold leading-normal md:text-left">
             StyleMe
           </h2>
-          <p className="text-[#FFF] font-['Manrope'] text-center text-[0.5rem] not-italic font-medium leading-3 md:text-left">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus et
-            at ea officia autem quisquam earum, provident saepe nihil, incidunt
-            facilis. Totam harum eligendi facilis temporibus possimus dolorem
-            blanditiis! Aliquam!
-          </p>
         </div>
         <nav className="flex flex-col items-start justify-center">
           {/* Product -1  */}

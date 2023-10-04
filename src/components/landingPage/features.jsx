@@ -10,6 +10,7 @@ import Feature3 from "../../assets/img/features-images/feature3-communities.png"
 const Features = () => {
   return (
     <div
+      id="#features"
       className="inline-flex flex-col justify-end items-start gap-24 mx-auto w-full pt-20 pb-4 px-8 mt-6
      bg-[#FFFFFF] lg:px-12"
     >
