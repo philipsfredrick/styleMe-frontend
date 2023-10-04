@@ -50,6 +50,8 @@ export const email_validation = {
         }
     }
 }
+
+
 export const password_validation = {
     name: 'password',
     label: 'Password',

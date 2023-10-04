@@ -6,8 +6,8 @@ import { BsFillMoonStarsFill } from "react-icons/bs";
 
 const navigation = [
   { name: "Home", href: "/", current: false },
-  { name: "Features", href: "#", current: false },
-  { name: "About", href: "#", current: false },
+  { name: "Features", href: "#features", current: false },
+  { name: "About", href: "#about", current: false },
 ];
 
 function classNames(...classes) {
@@ -26,7 +26,9 @@ const NavBar = () => {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <img src={Logo} className="flex-shrink-0 h-16 w-20" />
+          <a href="/">
+            <img src={Logo} className="flex-shrink-0 h-16 w-20" />
+          </a>
           <span className="sr-only">StyleMe App</span>
           <span
             className="text-[#14213d] font-['Outfit']
@@ -75,7 +77,7 @@ const NavBar = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="/login"
                 className="px-4 py-2
     rounded-3xl border border-[#14213d]
      text-[#fca311] text-sm not-italic font-bold leading-10"
@@ -85,7 +87,7 @@ const NavBar = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="/signup"
                 className="px-4 py-2
     rounded-3xl border border-[#FCA31122] text-[#fca311] 
     text-sm not-italic font-bold leading-10 bg-[#14213d]"
@@ -108,7 +110,7 @@ const NavBar = () => {
           sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
         >
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">StyleMe App</span>
               <img src={Logo} className="flex-shrink-0 h-16 w-20" />
             </a>
@@ -140,7 +142,7 @@ const NavBar = () => {
                   {" "}
                   <li>
                     <a
-                      href="#"
+                      href="/login"
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7
                   text-gray-900 hover:bg-gray-400"
                     >

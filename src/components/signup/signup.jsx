@@ -12,14 +12,16 @@ import {
   password_validation,
 } from "../common/input/inputValidations";
 import axios from "axios";
-import SignupSuccess from "./signupSuccess";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
   const methods = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [emailErrMsg, setEmailErrMsg] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const navigate = useNavigate();
 
   const onSubmit = methods.handleSubmit(async (data) => {
     try {
@@ -35,10 +37,32 @@ const Signup = () => {
         }
       );
       console.log("Data sent successfully", response.data);
-      localStorage.setItem("emailForOTP", response.data.email);
-      setTimeout(() => {
-        setSubmitSuccess(true);
-      }, 2000);
+      localStorage.setItem("emailForOTP", response.data.data.email);
+      // setUserEmail(response.data.data.email);
+      console.log("this is the set email", userEmail);
+      setSubmitSuccess(true);
+
+      Swal.fire({
+        icon: "success",
+        title: "Signup Successful!",
+        position: "center",
+        html: `
+            A verification code has been sent to your email: <strong>${localStorage.getItem(
+              "emailForOTP"
+            )}</strong>
+                `,
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonColor: "#FCA311",
+        confirmButtonText: "Continue",
+        allowOutsideClick: false,
+        timer: 3000,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Redirect to OTP input page.
+          navigate("/otp-input");
+        }
+      });
     } catch (error) {
       if (error.response) {
         if (error.response.status) {
@@ -51,13 +75,14 @@ const Signup = () => {
             confirmButtonColor: "#FCA311",
             timer: 3000,
           });
-          setEmailErrMsg(error.response.data);
+          // setEmailErrMsg(error.response.data.email);
         }
       }
       console.log("Error submitting data:", error);
     } finally {
       console.error("form validation failed");
       setIsSubmitting(false);
+      // setSubmitSuccess(false);
     }
   });
 
@@ -191,7 +216,6 @@ const Signup = () => {
                   Signup
                 </button>
               </div>
-              {SignupSuccess(localStorage.getItem("emailForOTP"))}
 
               {/* sign up with google div */}
               <div
