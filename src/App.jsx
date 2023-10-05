@@ -6,17 +6,15 @@ import Login from "./pages/loginPage/login";
 import OtpInput from "./pages/otpInput/otpInput";
 import SignUpPage from "./pages/SignUp/SignUpPage";
 
-
 function App() {
   return (
     <div>
       <Routes>
-        <Route path="/signup" element={<SignupForm />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/wardrobe" element={<Wardrobe />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/otp-input" element={<OtpInput />} />
-				<Route path="/login" element={<Login />}/>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
