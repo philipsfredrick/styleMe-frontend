@@ -10,7 +10,7 @@ const Trusted = () => {
   return (
     <div
       className="w-11/12 h-64 pt-5 pb-2 px-12 mx-auto mt-24
-     bg-[#FFF8EB] flex-shrink-0 border rounded-[2rem] lg:px-12"
+     bg-[#fdb541] flex-shrink-0 border rounded-[2rem] lg:px-12"
     >
       <div
         className="flex flex-col items-center text-center mt-10 mb-5 mx-auto overflow-auto

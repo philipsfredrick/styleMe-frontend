@@ -2,36 +2,44 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../components/common/spinner";
 
 const OtpInput = () => {
   const navigate = useNavigate();
   const [otp, setOTP] = useState(["", "", "", "", "", ""]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [otpErrMsg, setOtpErrMSg] = useState("");
 
   const userEmail = localStorage.getItem("emailForOTP");
-  console.log(userEmail, "this is the user email to send otp");
 
   const handleInputChange = (e, index) => {
     const newOTP = [...otp];
     newOTP[index] = e.target.value;
-
-    parseInt(newOTP.join(""));
-    console.log(newOTP, "newOTP here");
-
     setOTP(newOTP);
-
     if (index < otp.length - 1 && e.target.value !== "") {
       document.getElementById(`otp-input-${index + 1}`).focus();
     }
   };
 
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const pastedText = e.clipboardData.getData("text");
+    const newOtp = [...otp];
+
+    for (let i = 0; i < 6; i++) {
+      if (pastedText[i]) {
+        newOtp[i] = pastedText[i];
+      } else {
+        break;
+      }
+    }
+    setOTP(newOtp);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    console.log(userEmail, otp.join(""));
+    setIsLoading(true);
     try {
-      //   console.log(emailOTP, "emailForOTP");
       const response = await fetch(
         "http://localhost:8080/api/v1/confirm/code",
         {
@@ -40,46 +48,46 @@ const OtpInput = () => {
           body: JSON.stringify({ email: userEmail, code: otp.join("") }),
         }
       );
-      //   const response = await axios.post(
-      //     "http://localhost:8080/api/v1/confirm/code",
-      //     { email: userEmail, code: otp.join("") }
-      //   );
       console.log(response);
       if (response.status === 200) {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: `${response.message}`,
+          title: `Code confirmed`,
           confirmButtonText: "OK",
           confirmButtonColor: "#FCA311",
-          timer: 2000,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Redirect to login page.
+            navigate("/login");
+          }
         });
       }
-      navigate("/login");
     } catch (error) {
       if (error.response) {
         if (error.response.status == 404) {
-          console.log(error.response.message);
+          console.log(error.response);
           Swal.fire({
             position: "center",
             icon: "error",
-            title: `${error.response}`,
+            title: `Verification code not found or expired`,
             confirmButtonText: "Retry",
             confirmButtonColor: "#FCA311",
-            timer: 2000,
           });
           // setEmailErrMsg(error.response.data.email);
+        } else if (request.error) {
+          console.log("network error");
+        } else {
+          console.log(error);
         }
       }
-      console.log("Error submitting data:", error.response);
-    } finally {
-      setIsSubmitting(false);
     }
+    setIsLoading(false);
   };
 
   const handleResend = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "http://localhost:8080/api/v1/confirm/account/email",
@@ -92,16 +100,17 @@ const OtpInput = () => {
           icon: "success",
           //   title: `${response.message}`,
           html: `
-            A verification code has been sent to your email: <strong>${localStorage.getItem(
-              "emailForOTP"
-            )}</strong>
+            A verification code has been sent to your email: <strong>${userEmail}</strong>
                 `,
           confirmButtonText: "OK",
           confirmButtonColor: "#FCA311",
-          timer: 3000,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Redirect to OTP input page.
+            navigate("/otp-input");
+          }
         });
       }
-      navigate("/otp-input");
     } catch (error) {
       if (error.response) {
         if (error.response.status) {
@@ -112,15 +121,16 @@ const OtpInput = () => {
             title: `${error.response.data.email}`,
             confirmButtonText: "Retry",
             confirmButtonColor: "#FCA311",
-            timer: 3000,
           });
           // setEmailErrMsg(error.response.data.email);
         }
+      } else if (request.error) {
+        console.log("network error");
+      } else {
+        console.log(error);
       }
-      console.log("Error submitting data:", error.response);
-    } finally {
-      setIsSubmitting(false);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -153,6 +163,7 @@ const OtpInput = () => {
                       value={digit}
                       onChange={(e) => handleInputChange(e, index)}
                       maxLength="1"
+                      onPaste={handlePaste}
                     />
                   </div>
                 ))}
@@ -163,9 +174,10 @@ const OtpInput = () => {
                   <button
                     className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-[#FCA311] border-none text-white text-sm shadow-sm"
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isLoading}
                     onClick={handleSubmit}
                   >
+                    {isLoading && <LoadingSpinner />}
                     Verify Account
                   </button>
                 </div>

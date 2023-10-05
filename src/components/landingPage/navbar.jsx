@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../assets/logo.png";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { BsFillMoonStarsFill } from "react-icons/bs";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const navigation = [
-  { name: "Home", href: "/", current: false },
-  { name: "Features", href: "#features", current: false },
-  { name: "About", href: "#about", current: false },
+  { name: "Home", to: "/", current: false },
+  { name: "Features", to: "features", current: false },
+  { name: "How it works", to: "how it works", current: false },
+  { name: "About", to: "about", current: false },
+  { name: "FAQ", to: "faq-cta", current: false },
 ];
 
 function classNames(...classes) {
@@ -17,18 +20,39 @@ function classNames(...classes) {
 const NavBar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const [darkMode, setDarkMode] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowNavbar(true);
+      } else {
+        setShowNavbar(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     // <div className={darkMode ? "dark" : ""}>
-    <header className="bg-white sticky mx-auto w-full items-center mb-12 top-0 z-[20]">
+    <header
+      className={`sticky top-0 left-0  w-full p-2 mb-2
+      transition-transform duration-300 ease-in-out transform 
+      ${showNavbar ? "translate-y-0" : "translate-y-full"}bg-white mx-auto`}
+    >
       <nav
         className="flex items-center justify-between border border-[#D1D7F0] px-5 py-2 lg:px-12"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="/">
+          <Link to="/">
             <img src={Logo} className="flex-shrink-0 h-16 w-20" />
-          </a>
+          </Link>
           <span className="sr-only">StyleMe App</span>
           <span
             className="text-[#14213d] font-['Outfit']
@@ -53,13 +77,14 @@ const NavBar = () => {
         </div>
         <div className="hidden lg:flex justify-between lg:gap-x-12">
           {navigation.map((item) => (
-            <a
+            <Link
               key={item.name}
-              href={item.href}
-              className="text-sm font-semibold leading-6 text-[#414141]"
+              to={item.to}
+              className="text-sm font-semibold leading-6 text-[#414141] cursor-pointer
+              hover:text-[#FCA311]"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
         {/* <div className="flex items-center justify-center gap-3"> */}
@@ -76,24 +101,24 @@ const NavBar = () => {
               />
             </li>
             <li>
-              <a
-                href="/login"
+              <Link
+                to="/login"
                 className="px-4 py-2
     rounded-3xl border border-[#14213d]
      text-[#fca311] text-sm not-italic font-bold leading-10"
               >
                 Login
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/signup"
+              <Link
+                to="/signup"
                 className="px-4 py-2
     rounded-3xl border border-[#FCA31122] text-[#fca311] 
     text-sm not-italic font-bold leading-10 bg-[#14213d]"
               >
                 Signup
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -110,10 +135,10 @@ const NavBar = () => {
           sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
         >
           <div className="flex items-center justify-between">
-            <a href="/" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">StyleMe App</span>
               <img src={Logo} className="flex-shrink-0 h-16 w-20" />
-            </a>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -127,36 +152,36 @@ const NavBar = () => {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.to}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7
                     text-gray-900 hover:bg-gray-400"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
               <div className="py-6">
                 <ul>
                   {" "}
                   <li>
-                    <a
-                      href="/login"
+                    <Link
+                      to="/login"
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7
                   text-gray-900 hover:bg-gray-400"
                     >
                       Log in
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="/signup"
+                    <Link
+                      to="/signup"
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7
                   text-gray-900 hover:bg-gray-400"
                     >
                       Sign up
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

@@ -14,11 +14,11 @@ import {
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import LoadingSpinner from "../common/spinner";
 
 const Signup = () => {
   const methods = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [emailErrMsg, setEmailErrMsg] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
@@ -38,10 +38,6 @@ const Signup = () => {
       );
       console.log("Data sent successfully", response.data);
       localStorage.setItem("emailForOTP", response.data.data.email);
-      // setUserEmail(response.data.data.email);
-      console.log("this is the set email", userEmail);
-      setSubmitSuccess(true);
-
       Swal.fire({
         icon: "success",
         title: "Signup Successful!",
@@ -56,7 +52,6 @@ const Signup = () => {
         confirmButtonColor: "#FCA311",
         confirmButtonText: "Continue",
         allowOutsideClick: false,
-        timer: 3000,
       }).then((result) => {
         if (result.isConfirmed) {
           // Redirect to OTP input page.
@@ -64,26 +59,54 @@ const Signup = () => {
         }
       });
     } catch (error) {
-      if (error.response) {
-        if (error.response.status) {
-          console.log(error.response.data.message);
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: `${error.response.data.message}`,
-            confirmButtonText: "Retry",
-            confirmButtonColor: "#FCA311",
-            timer: 3000,
-          });
-          // setEmailErrMsg(error.response.data.email);
-        }
+      if (error.response && error.response.status === 409) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log("data here", error.response.data);
+        console.log("status here", error.response.status);
+        console.log("headers here", error.response.headers);
+
+        console.log(error.response);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: `${error.response.data.message}`,
+          confirmButtonText: "Proceed to Login",
+          showConfirmButton: true,
+          showCancelButton: true,
+          cancelButtonText: "Retry",
+          confirmButtonColor: "#FCA311",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Redirect to OTP input page.
+            console.log("error email", error.response.data.message);
+            // setUserEmail(error.data.data.email);
+            console.log("email data", data.email);
+            localStorage.setItem("emailForOTP", data.email);
+            navigate("/login");
+          }
+        });
+        // setEmailErrMsg(error.response.data.email);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log("network error", error.request);
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: `${error.request}`,
+          confirmButtonColor: "#FCA311",
+          confirmButtonText: "Please try again",
+        });
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
       }
-      console.log("Error submitting data:", error);
-    } finally {
-      console.error("form validation failed");
-      setIsSubmitting(false);
-      // setSubmitSuccess(false);
+      console.log(error.config);
     }
+
+    setIsSubmitting(false);
   });
 
   // const password = methods.watch("password", "");
@@ -215,6 +238,7 @@ const Signup = () => {
                 >
                   Signup
                 </button>
+                {isSubmitting && <LoadingSpinner />}
               </div>
 
               {/* sign up with google div */}

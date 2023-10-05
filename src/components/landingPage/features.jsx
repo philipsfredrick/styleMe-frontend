@@ -6,11 +6,12 @@ import { MdOutlineWifiTethering } from "react-icons/md";
 import Feature1 from "../../assets/img/features-images/feature1-group.png";
 import Feature2 from "../../assets/img/features-images/feature2-wardrobe.png";
 import Feature3 from "../../assets/img/features-images/feature3-communities.png";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const Features = () => {
   return (
     <div
-      id="#features"
+      id="features"
       className="inline-flex flex-col justify-end items-start gap-24 mx-auto w-full pt-20 pb-4 px-8 mt-6
      bg-[#FFFFFF] lg:px-12"
     >
@@ -54,7 +55,8 @@ const Features = () => {
                 We got the best that you can wear. Clothes that make you feel
                 sophisticated irrespective of your gender.
               </p>
-              <a
+              <Link
+                to="#"
                 className="flex items-start gap-2 mb-6 text-[#1B1B1BCC] text-xl not-italic 
             font-extrabold leading-6 font-['Manrope'] cursor-pointer hover:bg-[#0c0b0bd3]"
               >
@@ -65,7 +67,7 @@ const Features = () => {
                   width={2.4}
                   height={2.4}
                 />
-              </a>
+              </Link>
             </div>
           </div>
           <div>
@@ -96,7 +98,8 @@ const Features = () => {
                 accessible anytime, anywhere. Welcome to the future of fashion,
                 right in the palm of your hand.
               </p>
-              <a
+              <Link
+                to="#"
                 className="flex items-start gap-2 text-[#1B1B1BCC] text-xl not-italic 
             font-extrabold leading-6 font-['Manrope'] cursor-pointer hover:bg-[#0c0b0bd3]"
               >
@@ -107,7 +110,7 @@ const Features = () => {
                   width={2.4}
                   height={2.4}
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -134,7 +137,8 @@ const Features = () => {
                 of fashion devotees. Share your distinct style, explore emerging
                 trends, and form bonds.
               </p>
-              <a
+              <Link
+                to="#"
                 className="flex items-start gap-2 text-[#1B1B1BCC] text-xl not-italic 
             font-extrabold leading-6 font-['Manrope'] cursor-pointer hover:bg-[#0c0b0bd3]"
               >
@@ -145,7 +149,7 @@ const Features = () => {
                   width={2.4}
                   height={2.4}
                 />
-              </a>
+              </Link>
             </div>
           </div>
           <div>

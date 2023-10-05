@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 import HeroImg from "../../assets/img/hero.png";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const Hero = () => {
   // const [darkMode, setDarkMode] = useState(false);
   return (
-    <div>
+    <div id="/">
       <div className="mx-auto overflow-hidden w-full sm:flex md:flex px-5 py-2 lg:px-12">
         <div className="text-center sm:text-left sm:flex sm:flex-col sm:items-start sm:w-1/2 md:flex md:flex-col md:items-start md:w-1/2">
           <p className="text-[3.2rem] text-[#1b1b1b] not-italic font-extrabold leading-tight">
