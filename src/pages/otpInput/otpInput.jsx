@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Logo from "../../assets/logo.png";
 import LoadingSpinner from "../../components/common/spinner";
 
 const OtpInput = () => {
@@ -136,6 +137,10 @@ const OtpInput = () => {
   return (
     <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-500 py-12">
       <div className="relative bg-white px-6 pt-10 pb-9 shadow-xl mx-auto w-full max-w-lg rounded-2xl">
+        <a className="absolute z-[1] top-8 left-8" href="/">
+          {" "}
+          <img src={Logo} className="flex-shrink-0 h-14 w-24" />
+        </a>
         <div className="mx-auto flex w-full max-w-md flex-col space-y-16">
           <div className="flex flex-col items-center justify-center text-center space-y-2">
             <div className="font-semibold text-3xl">
