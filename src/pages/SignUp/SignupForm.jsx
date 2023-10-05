@@ -17,6 +17,8 @@ function SignUpForm() {
     "../../src/assets/Man-fashion-boutique.png",
   ];
 
+  const [userInfo, setUserInfo] = useState(null);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
