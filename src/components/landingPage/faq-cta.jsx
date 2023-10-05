@@ -67,14 +67,14 @@ const FAQCTA = () => {
           </p>
         </div>
         <div className="text-center sm:text-left">
-          <button
-            href="#"
+          <a
+            href="/signup"
             className="inline-flex px-4 py-2 justify-center items-center gap-1 rounded-2xl border border-[#fca31122]
              bg-[#14213d] text-[#fca311] font-['Manrope'] not-italic font-bold leading-normal text-sm
              transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-80 hover:bg-[#434d64] duration-300 mt-[2.6rem] mb-6"
           >
             Get Started <BiRightArrowAlt size={30} />
-          </button>
+          </a>
         </div>
       </div>
     </div>

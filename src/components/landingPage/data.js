@@ -1,4 +1,9 @@
 // FAQ data
+import woman from "../../assets/img/signup-videos/woman.mp4";
+import pnwring from "../../assets/img/signup-videos/pnw-ring.mp4";
+import martpick from  "../../assets/img/signup-videos/mart-pickout.mp4";
+import afrowoman from "../../assets/img/signup-videos/afro1.mp4";
+
 
 export const accordions = [
   {
@@ -37,13 +42,20 @@ export const testimonials = [
   {
     id: 1,
     quote: "Before StyleMe, I struggled to put together stylish outfits. Now, it's a breeze. I've never felt more confident in my daily attire.",
-    name: "Rose A",
+    author: "Rose A",
     role: "Software Engineer"
   },
   {
     id: 2,
     quote: "As a busy professional, I needed a quick solution for fashion dilemmas. StyleMe has been my style savior. I can't imagine life without it.",
-    name: "Jessica O",
+    author: "Jessica O",
     role: "Software Engineer"
   }
   ];
+
+  export const slides = [
+    pnwring,
+    martpick,
+     woman,
+     afrowoman
+  ]
