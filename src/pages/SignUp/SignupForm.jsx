@@ -123,6 +123,7 @@ function SignUpForm() {
         })
         .then((response) => {
           console.log("Data sent successfully:", response.data);
+          window.location.href = `${config.REACT_APP_FRONTEND_URL}/${wardrobe}`;
         })
         .catch((error) => {
           console.error("Error sending data:", error);
@@ -145,7 +146,10 @@ function SignUpForm() {
 
     fetch(googleSignupUrl, requestOptions)
       .then((response) => response.json())
-      .then((data) => console.log("Response from backend:", data))
+      .then((data) => {
+        console.log("Response from backend:", data)
+        window.location.href = `${config.REACT_APP_FRONTEND_URL}/${wardrobe}`;
+      })
       .catch((error) =>
         console.error("Error sending token to backend:", error)
       );
@@ -301,7 +305,7 @@ function SignUpForm() {
               >
                 Already have an account?
               </span>
-              <span
+              <a
                 style={{
                   color: "#FCA311",
                   fontStyle: "normal",
@@ -310,9 +314,10 @@ function SignUpForm() {
                   fontWeight: "600",
                   lineHeight: "24px",
                 }}
+                href="/login"
               >
                 Sign in
-              </span>
+              </a>
             </div>
           </div>
         </div>
