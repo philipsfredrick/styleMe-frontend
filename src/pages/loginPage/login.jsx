@@ -7,6 +7,7 @@ import Carousel from "../loginPage/Carousel.jsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import config from "../../../config";
 
 
 const Login = () => {
@@ -79,12 +80,15 @@ const Login = () => {
 
   const handleClick = (e) => {
     
-      axios.post(`http://localhost:8080/api/v1/auth/login`, payload)
+      axios.post(`${config.REACT_APP_LOGIN_URL}`, payload)
           .then((response) => {
               console.log(response)
-              response.data[0].password === userInput["password"] && navigate("/dashboard")
+              response.data[0].password === userInput["password"] && navigate("/wardrobe")
           })
           .catch((error) => console.log(error))
+
+          // window.location.href = `${config.REACT_APP_FRONTEND_URL}/${wardrobe}`;
+
   }
   
   return (
@@ -123,7 +127,7 @@ const Login = () => {
                   <button onClick={handleClick}>Sign In</button>
                   <div className="dont">
                     <p>Don&apos;t have an account?</p>
-                    <a onClick={()=>navigate("/register")}>
+                    <a href="/signup">
                       Sign up
                     </a>
                   </div>

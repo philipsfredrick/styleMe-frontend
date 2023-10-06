@@ -1,6 +1,5 @@
 import React from "react";
 import { MdOutlineWifiTethering } from "react-icons/md";
-import { Link, animateScroll as scroll } from "react-scroll";
 
 const Benefits = () => {
   return (

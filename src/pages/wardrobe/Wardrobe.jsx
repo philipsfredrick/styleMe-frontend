@@ -24,19 +24,19 @@ import {
   Nativewear,
   Downwardarrow,
 } from "../../assets/dashboardImages";
-import { user1, user2, user3 } from "../../assets/img";
+import { femaleDress1, femaleDress2, femaleDress3, maleDress1, maleDress2, maleDress3 } from "../../assets/img";
 
 const users = [
   {
     id: 1,
-    name: "Sandra",
-    image: [user1, user2, user3],
+    name: "Halimat",
+    image: [femaleDress1, femaleDress2, femaleDress3],
   },
 
   {
     id: 2,
-    name: "Jenny",
-    image: [user1, user2, user3],
+    name: "Johnson",
+    image: [maleDress1, maleDress2, maleDress3],
   },
 ];
 
@@ -47,9 +47,10 @@ const Wardrobe = () => {
 
   const handleTabClick = (tabName) => {
     setTab("wardrobe");
-
-    const url = `http://localhost:3000/wardrobe/${tabName}`;
-
+    const wardrobe = "wardrobe"
+  
+    const url = `${config.REACT_APP_FRONTEND_URL}/${wardrobe}/${tabName}`;
+    
     window.history.pushState({}, "", url);
   };
   const handleFileUpload = (event) => {
@@ -85,10 +86,28 @@ const Wardrobe = () => {
     setOpenDropdownIndex(index === openDropdownIndex ? null : index);
   };
 
-  const handleImageDelete = (index) => {
-    const updatedImages = images.filter((image, e) => e !== index);
-    setImages(updatedImages);
+  const handleImageDelete = async (index) => {
+    try {
+      const deleteResponse = await fetch(`${config.REACT_APP_DELETE_URL}/${index}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (deleteResponse.ok) {
+        console.log('Image deleted successfully in the backend.');
+  
+        const updatedImages = images.filter((image, i) => i !== index);
+        setImages(updatedImages);
+      } else {
+        console.error('Error deleting image in the backend:', deleteResponse.statusText);
+      }
+    } catch (error) {
+      console.error('Error deleting image:', error);
+    }
   };
+  
 
   const handleSell = (index) => {
     const imageToSell = images[index];
@@ -128,7 +147,30 @@ const Wardrobe = () => {
     });
   };
 
-  const handleGenerate = () => {};
+  const handleGenerate = async () => {
+    try {
+        const response = await fetch(`${config.REACT_APP_GENERATE_URL}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            }),
+        });
+
+        if (!response.ok) {
+
+            throw new Error('Error generating match');
+        }
+
+        const matchData = await response.json();
+
+        console.log('Generated match:', matchData);
+    } catch (error) {
+        console.error('Error generating match:', error);
+    }
+};
+
 
   return (
     <div className="w-full h-full bg-[#F2F5FE]">
@@ -163,7 +205,7 @@ const Wardrobe = () => {
               className="rounded-[50%] h-[40px] w-[40px] cursor-pointer"
             />
             <p className="text-md font-semibold w-32 text-center">
-              Welcome back! Sandra
+              Welcome back!
             </p>
           </div>
         </div>
@@ -329,6 +371,13 @@ const Wardrobe = () => {
                   Generate
                 </button>
               </div>
+            </div>
+    
+            <div className="flex flex-col gap-4 mt-auto">
+              <button className="w-full md:w-[171px] h-[52px] rounded-lg bg-white border border-[#14213D] outline-[#14213D] cursor-pointer text-center text-lg font-semibold"
+                onClick={() =>handleGenerate}>
+                Generate
+              </button>
             </div>
           </div>
         )}
