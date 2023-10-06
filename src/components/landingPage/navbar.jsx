@@ -8,8 +8,8 @@ import { Link, animateScroll as scroll } from "react-scroll";
 const navigation = [
   { name: "Home", to: "/", current: false },
   { name: "Features", to: "features", current: false },
-  { name: "How it works", to: "how it works", current: false },
-  { name: "About", to: "about", current: false },
+  // { name: "How it works", to: "how it works", current: false },
+  // { name: "About", to: "about", current: false },
   { name: "FAQ", to: "faq-cta", current: false },
 ];
 
@@ -20,31 +20,27 @@ function classNames(...classes) {
 const NavBar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const [darkMode, setDarkMode] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(false);
+  // const [showNavbar, setShowNavbar] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setShowNavbar(true);
-      } else {
-        setShowNavbar(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY > 100) {
+  //       setShowNavbar(true);
+  //     } else {
+  //       setShowNavbar(false);
+  //     }
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
     // <div className={darkMode ? "dark" : ""}>
-    <header
-      className={`sticky top-0 left-0  w-full p-2 mb-2
-      transition-transform duration-300 ease-in-out transform 
-      ${showNavbar ? "translate-y-0" : "translate-y-full"}bg-white mx-auto`}
-    >
+    <header className="bg-white sticky mx-auto w-full items-center mb-12 top-0 z-[20]">
       <nav
         className="flex items-center justify-between border border-[#D1D7F0] px-5 py-2 lg:px-12"
         aria-label="Global"
@@ -101,24 +97,24 @@ const NavBar = () => {
               />
             </li>
             <li>
-              <Link
-                to="/login"
+              <a
+                href="/login"
                 className="px-4 py-2
     rounded-3xl border border-[#14213d]
      text-[#fca311] text-sm not-italic font-bold leading-10"
               >
                 Login
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/signup"
+              <a
+                href="/signup"
                 className="px-4 py-2
     rounded-3xl border border-[#FCA31122] text-[#fca311] 
     text-sm not-italic font-bold leading-10 bg-[#14213d]"
               >
                 Signup
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
@@ -166,22 +162,22 @@ const NavBar = () => {
                 <ul>
                   {" "}
                   <li>
-                    <Link
-                      to="/login"
+                    <a
+                      href="/login"
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7
                   text-gray-900 hover:bg-gray-400"
                     >
                       Log in
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link
-                      to="/signup"
+                    <a
+                      href="/signup"
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7
                   text-gray-900 hover:bg-gray-400"
                     >
                       Sign up
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>

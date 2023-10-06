@@ -6,7 +6,6 @@ import Login from "./pages/loginPage/login";
 import OtpInput from "./pages/otpInput/otpInput";
 import SignUpPage from "./pages/SignUp/SignUpPage";
 
-
 function App() {
   return (
     <div>
@@ -15,7 +14,7 @@ function App() {
         <Route path="/wardrobe" element={<Wardrobe />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/otp-input" element={<OtpInput />} />
-				<Route path="/login" element={<Login />}/>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
