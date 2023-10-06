@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import config from "../../../config";
 
 import {
@@ -46,13 +46,11 @@ const Wardrobe = () => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
 
   const handleTabClick = (tabName) => {
+    setTab("wardrobe");
 
-    setTab("wardrobe"); 
-  
     const url = `http://localhost:3000/wardrobe/${tabName}`;
-    
+
     window.history.pushState({}, "", url);
-    
   };
   const handleFileUpload = (event) => {
     const selectedImage = event.target.files;
@@ -62,9 +60,7 @@ const Wardrobe = () => {
     const imageArray = selectedImageArray.map((image) => {
       const uploadEndpoint = config.REACT_APP_UPLOAD_URL;
 
-
       formData.append("image", image);
-
 
       fetch(uploadEndpoint, {
         method: "POST",
@@ -98,40 +94,39 @@ const Wardrobe = () => {
     const imageToSell = images[index];
 
     exportToMarketplace(imageToSell)
-    .then((uploadResponse) => {
-      const imageUrlInMarketplace = uploadResponse.imageUrl;
+      .then((uploadResponse) => {
+        const imageUrlInMarketplace = uploadResponse.imageUrl;
 
-      window.location.href = `/marketplace?url=${imageUrlInMarketplace}`;
+        window.location.href = `/marketplace?url=${imageUrlInMarketplace}`;
 
-      const updatedImages = images.filter((_, i) => i !== index);
-      setImages(updatedImages);
-    })
-    .catch((error) => {
-      console.error('Error uploading image to the marketplace:', error);
-    });
+        const updatedImages = images.filter((_, i) => i !== index);
+        setImages(updatedImages);
+      })
+      .catch((error) => {
+        console.error("Error uploading image to the marketplace:", error);
+      });
     const updatedImages = images.filter((_, i) => i !== index);
-    setTab("marketplace"); 
+    setTab("marketplace");
 
     setImages(updatedImages);
   };
 
-  const exportToMarketplace= async (image) => {
+  const exportToMarketplace = async (image) => {
     const uploadEndpoint = config.REACT_APP_MARKET_URL;
- 
+
     const formData = new FormData();
-    formData.append('image', image);
-  
+    formData.append("image", image);
+
     return fetch(uploadEndpoint, {
-      method: 'POST',
+      method: "POST",
       body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to upload image to the marketplace');
-        }
-        return response.json();
-      });
-  }
+    }).then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to upload image to the marketplace");
+      }
+      return response.json();
+    });
+  };
 
   const handleGenerate = () => {};
 
@@ -231,15 +226,13 @@ const Wardrobe = () => {
               Categories
             </div>
 
-            <div className="flex flex-col w-[900px] gap-6 rounded-xl border border-solid justify-start items-center gap-6 inline-flex">
+            <div className="flex flex-col w-[900px] gap-6 rounded-xl border border-solid justify-start items-center">
               <div className="flex gap-4">
                 <a
                   onClick={() => handleTabClick("work")}
                   className="work flex flex-col items-center gap-1"
                 >
-                  <img src={Workwear} alt="" className="pl-2" 
-                  name="work"
-                  />
+                  <img src={Workwear} alt="" className="pl-2" name="work" />
                   <div className="flex gap-1 font-bold">
                     <p>Work Closet </p>
                     <img src={Downwardarrow} alt="" />
@@ -247,8 +240,7 @@ const Wardrobe = () => {
                 </a>
 
                 <a onClick={() => handleTabClick("sunday")} className="sunday">
-                  <img src={Sundaywear} alt="" 
-                  name="sunday"/>
+                  <img src={Sundaywear} alt="" name="sunday" />
                   <div className="flex gap-1 font-bold">
                     <p>Sunday Closet</p>
                     <img src={Downwardarrow} alt="" />
@@ -256,24 +248,20 @@ const Wardrobe = () => {
                 </a>
 
                 <a onClick={() => handleTabClick("native")} className="native">
-                  <img src={Nativewear} alt="" 
-                  name="native"/>
+                  <img src={Nativewear} alt="" name="native" />
                   <div className="flex gap-1 font-bold">
                     <p>Native Closet</p>
                     <img src={Downwardarrow} alt="" />
                   </div>
                 </a>
 
-
                 <a onClick={() => handleTabClick("party")} className="party">
-                  <img src={Partywear} alt="" 
-                  name="party"/>
+                  <img src={Partywear} alt="" name="party" />
                   <div className="flex gap-1 font-bold">
                     <p>Party Closet</p>
                     <img src={Downwardarrow} alt="" />
                   </div>
                 </a>
-
               </div>
             </div>
           </div>
@@ -281,68 +269,68 @@ const Wardrobe = () => {
 
         {tab === "wardrobe" && (
           <div className="flex flex-col items-center justify-center min-h-screen">
-          <div className="flex flex-col items-center justify-center gap-20 mt-4">
-            <div className="flex flex-col gap-10">
-              <label className="w-full md:w-[171px] h-[52px] rounded-lg bg-white border border-[#14213D] outline-[#14213D]  cursor-pointer text-center text-lg font-semibold">
-                Upload
-                <input
-                  type="file"
-                  name="images"
-                  multiple
-                  accept="image/*"
-                  style={{ display: "none" }}
-                  onChange={handleFileUpload}
-                />
-              </label>
-              <div className="flex flex-wrap gap-10 relative">
-                {images &&
-                  images.map((imageSrc, index) => (
-                    <div key={index} className="relative">
-                      <img
-                        src={imageSrc}
-                        alt={`Image ${index}`}
-                        className="object-cover w-48 h-48 bg-transparent"
-                      />
-                      <div
-                        className="absolute top-0 right-0 m-2 cursor-pointer"
-                        onClick={() => handleToggleDropdown(index)}
-                      >
-                        <div className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center">
-                          <div className="w-2 h-2 bg-white"></div>
-                          <div className="w-2 h-2 bg-white mt-1"></div>
-                          <div className="w-2 h-2 bg-white mt-1"></div>
-                        </div>
-                      </div>
-                      {openDropdownIndex === index && (
-                        <div className="absolute top-0 right-0 mt-10">
-                          <div className="bg-white border rounded-lg shadow-lg">
-                            <button
-                              className="block w-full py-2 px-4 text-gray-700 hover:text-red-500 text-left"
-                              onClick={() => handleSell(index)}
-                            >
-                              Sell
-                            </button>
-                            <button
-                              className="block w-full py-2 px-4 text-gray-700 hover:text-red-500 text-left"
-                              onClick={() => handleImageDelete(index)}
-                            >
-                              Delete
-                            </button>
+            <div className="flex flex-col items-center justify-center gap-20 mt-4">
+              <div className="flex flex-col gap-10">
+                <label className="w-full md:w-[171px] h-[52px] rounded-lg bg-white border border-[#14213D] outline-[#14213D]  cursor-pointer text-center text-lg font-semibold">
+                  Upload
+                  <input
+                    type="file"
+                    name="images"
+                    multiple
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={handleFileUpload}
+                  />
+                </label>
+                <div className="flex flex-wrap gap-10 relative">
+                  {images &&
+                    images.map((imageSrc, index) => (
+                      <div key={index} className="relative">
+                        <img
+                          src={imageSrc}
+                          alt={`Image ${index}`}
+                          className="object-cover w-48 h-48 bg-transparent"
+                        />
+                        <div
+                          className="absolute top-0 right-0 m-2 cursor-pointer"
+                          onClick={() => handleToggleDropdown(index)}
+                        >
+                          <div className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center">
+                            <div className="w-2 h-2 bg-white"></div>
+                            <div className="w-2 h-2 bg-white mt-1"></div>
+                            <div className="w-2 h-2 bg-white mt-1"></div>
                           </div>
                         </div>
-                      )}
-                    </div>
-                  ))}
+                        {openDropdownIndex === index && (
+                          <div className="absolute top-0 right-0 mt-10">
+                            <div className="bg-white border rounded-lg shadow-lg">
+                              <button
+                                className="block w-full py-2 px-4 text-gray-700 hover:text-red-500 text-left"
+                                onClick={() => handleSell(index)}
+                              >
+                                Sell
+                              </button>
+                              <button
+                                className="block w-full py-2 px-4 text-gray-700 hover:text-red-500 text-left"
+                                onClick={() => handleImageDelete(index)}
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4 mt-auto">
+                <button className="w-full md:w-[171px] h-[52px] rounded-lg bg-white border border-[#14213D] outline-[#14213D] cursor-pointer text-center text-lg font-semibold">
+                  Generate
+                </button>
               </div>
             </div>
-    
-            <div className="flex flex-col gap-4 mt-auto">
-              <button className="w-full md:w-[171px] h-[52px] rounded-lg bg-white border border-[#14213D] outline-[#14213D] cursor-pointer text-center text-lg font-semibold">
-                Generate
-              </button>
-            </div>
           </div>
-        </div>
         )}
         {tab === "marketplace" && (
           <div className="w-full gap-20 h-auto justify-between flex flex-col mt-12">

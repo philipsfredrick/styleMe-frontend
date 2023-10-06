@@ -94,10 +94,11 @@ const Signup = () => {
         console.log("network error", error.request);
         Swal.fire({
           position: "center",
-          icon: "warning",
-          title: `${error.request}`,
+          icon: "error",
+          title: `Network Error. Check your internet connection or request`,
           confirmButtonColor: "#FCA311",
           confirmButtonText: "Please try again",
+          timer: 1000,
         });
       } else {
         // Something happened in setting up the request that triggered an Error
