@@ -162,7 +162,7 @@ const ResetPassword = () => {
           <p className="text-center">
             Already have an account?
             <a
-              href="/loginPage"
+              href="/login"
               className="text-[#FCA311] font-['Manrope'] font-medium inline-flex space-x-1 items-center hover:underline"
             >
               <span>Login now </span>

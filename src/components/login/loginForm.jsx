@@ -40,7 +40,7 @@ const LoginComponent = () => {
         }
       );
       console.log("Data sent successfully", response.data);
-      const token = response.headers["Token"];
+      const token = response.headers["authorization"];
       if (token) {
         if (rememberMe) {
           localStorage.setItem("authToken", token);
@@ -48,6 +48,7 @@ const LoginComponent = () => {
           sessionStorage.setItem("authToken", token);
         }
         setAuthToken(token);
+        console.log("Token:", token);
       }
       console.log("headers here", token);
       if (response.status === 200) {
